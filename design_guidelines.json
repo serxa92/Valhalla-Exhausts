@@ -1,0 +1,125 @@
+{
+  "theme": "dark",
+  "archetype": "Archetype 5: Jewel & Luxury (Modified for Cold Industrial/Viking)",
+  "design_philosophy": "Blackened viking forge. Dark steel, brushed metal, pure cold silver accents. No warm colors (no orange/fire). Focus on monochrome textures, sparks, and high-end automotive craftsmanship.",
+  "colors": {
+    "background": {
+      "primary": "#050505",
+      "secondary": "#0F1115",
+      "tertiary": "#1A1D24"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#CBD5E1",
+      "muted": "#64748B"
+    },
+    "accent": {
+      "primary": "#E2E8F0",
+      "hover": "#FFFFFF",
+      "border": "#334155"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Cormorant Garamond",
+      "body": "Manrope"
+    },
+    "rules": {
+      "h1": "text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tighter text-white",
+      "h2": "text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-slate-200",
+      "h3": "text-xl sm:text-2xl font-medium text-slate-300",
+      "body": "text-base leading-relaxed text-slate-400"
+    }
+  },
+  "spacing_and_layout": {
+    "container_padding": "px-6 md:px-12 lg:px-24",
+    "section_spacing": "py-24 md:py-32",
+    "grid_strategy": "Mode A: The 'Tetris' Grid for gallery, wide gaps (gap-8), asymmetric overlaps."
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-slate-800 text-white border border-slate-600 hover:bg-slate-700 hover:border-slate-400 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.05)]",
+      "secondary": "bg-transparent text-slate-300 border border-slate-700 hover:border-slate-400 hover:text-white transition-all duration-300"
+    },
+    "cards": {
+      "glass": "bg-white/5 backdrop-blur-xl border border-white/10 rounded-sm",
+      "solid": "bg-[#0F1115] border border-slate-800 rounded-sm"
+    }
+  },
+  "motion": {
+    "scroll": "Use Lenis for smooth momentum scrolling.",
+    "hover": "Subtle border illuminations (tracing beam style) and text color brightens.",
+    "reveal": "Fade up with slight y-axis translation on scroll."
+  },
+  "media": {
+    "images": {
+      "logo": {
+        "url": "https://customer-assets.emergentagent.com/job_c9b8ec6f-9a41-4edb-b753-db8261ceacab/artifacts/qvgikphh_image.png",
+        "description": "Valhalla Exhausts runic logo"
+      },
+      "hero_bg": {
+        "url": "https://images.pexels.com/photos/9028761/pexels-photo-9028761.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920",
+        "description": "Moody dark sports car in garage, heavily desaturated with black overlay"
+      },
+      "artisan": {
+        "url": "https://images.pexels.com/photos/30342263/pexels-photo-30342263.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Welder working with TIG, sparks flying (apply grayscale filter)"
+      },
+      "gallery_1": {
+        "url": "https://images.pexels.com/photos/10827691/pexels-photo-10827691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Chrome twin exhaust"
+      },
+      "gallery_2": {
+        "url": "https://images.pexels.com/photos/6025956/pexels-photo-6025956.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Dual exhaust pipes"
+      },
+      "gallery_3": {
+        "url": "https://images.pexels.com/photos/36522037/pexels-photo-36522037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "TIG welding apparatus close up"
+      },
+      "gallery_4": {
+        "url": "https://images.pexels.com/photos/12920297/pexels-photo-12920297.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Sleek Nissan 350z at twilight (desaturated)"
+      }
+    },
+    "image_treatment": "All images MUST have grayscale/desaturated CSS filters (`grayscale` or `saturate-0`) to match the cold steel aesthetic. Ensure high contrast and crushed blacks."
+  },
+  "sections_instructions": [
+    {
+      "name": "Hero",
+      "content": "Valhalla Exhausts logo. Tagline: 'Escapes artesanales forjados como en el Valhalla'. Primary CTA: 'WhatsApp' / 'Pedir Presupuesto'. Secondary: 'Ver trabajos'.",
+      "design": "Massive viewport height (min-h-screen). Very dark `bg-black/80` overlay over the `hero_bg` image. Place the logo prominently. No form, just buttons."
+    },
+    {
+      "name": "Sobre el artesano",
+      "content": "Short bio about the craftsman, TIG welding expertise, handmade approach.",
+      "design": "Two columns: left is the artisan image (grayscale, sharp borders, max-h-[80vh]), right is typography. Use 'Cormorant Garamond' for the heading. High negative space."
+    },
+    {
+      "name": "Galería de escapes",
+      "content": "Visual showcase of custom exhausts.",
+      "design": "Bento Grid (Mode A). Overlapping elements, asymmetrical. Use gallery images provided."
+    },
+    {
+      "name": "Proceso artesanal",
+      "content": "Steps: 1. Diseño 2. Corte 3. Soldadura TIG 4. Pulido 5. Instalación.",
+      "design": "Vertical timeline or 5-column bento. Dark cards with cold silver 1px borders (`border-slate-800`). Add 'Tracing Beam' or subtle hover glows."
+    },
+    {
+      "name": "Testimonios",
+      "content": "3-4 client quotes with car models (e.g., 'BMW M3 e46', 'Nissan 350Z').",
+      "design": "Glassmorphism cards (`bg-white/5`, `backdrop-blur-xl`, `border-white/10`). Minimalist layout. Quotation marks in silver."
+    },
+    {
+      "name": "Contacto",
+      "content": "Massive tactile buttons for WhatsApp, Instagram, Email. NO forms.",
+      "design": "Footer takes full viewport height (`min-h-screen` or `py-32`). Enormous text. Buttons should feel like heavy steel plates with cold silver hover states."
+    }
+  ],
+  "technical_rules": {
+    "framework": "React (JSX/JS), Tailwind CSS, Framer Motion.",
+    "accessibility": "Use `data-testid` for all interactive elements.",
+    "icons": "Use lucide-react (e.g., MessageCircle, Instagram, Mail).",
+    "components": "Avoid pre-built structural cards from UI libraries. Build custom using div and Tailwind to match the raw/viking aesthetic. DO NOT use generic Shadcn cards."
+  }
+}

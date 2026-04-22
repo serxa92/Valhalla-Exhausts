@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import "@/App.css";
+import useEmblaCarousel from "embla-carousel-react";
 import {
   Instagram,
   Mail,
@@ -7,6 +8,7 @@ import {
   MapPin,
   ArrowDown,
   ArrowRight,
+  ArrowLeft,
   Menu,
   X,
   Flame,
@@ -527,36 +529,63 @@ const Process = () => (
    Gallery
 --------------------------------------------------------- */
 const Gallery = () => {
-  const tiles = [
+  const slides = [
     {
       src: SHOP.mercedes,
       label: "Mercedes-AMG · Línea completa homologada",
-      tall: true,
-    },
-    {
-      src: SHOP.helmet,
-      label: "Doble salida 76mm · Pulido",
-    },
-    {
-      src: SHOP.welding,
-      label: "Montaje bajo coche · Soldadura TIG",
-      wide: true,
     },
     {
       src: SHOP.i20n,
       label: "Hyundai i20 N · En taller",
     },
     {
-      src: SHOP.front,
-      label: "Banco de pruebas · Inox",
-      wide: true,
+      src: SHOP.welding,
+      label: "Soldadura TIG bajo coche",
     },
     {
-      src: SHOP.mercedes,
-      label: "AMG · Detalle colectores",
-      tall: true,
+      src: SHOP.helmet,
+      label: "Doble salida 76mm · Pulido",
+    },
+    {
+      src: SHOP.front,
+      label: "Banco de pruebas · Inox",
     },
   ];
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "center",
+    skipSnaps: false,
+  });
+  const [selected, setSelected] = useState(0);
+
+  const scrollPrev = useCallback(
+    () => emblaApi && emblaApi.scrollPrev(),
+    [emblaApi]
+  );
+  const scrollNext = useCallback(
+    () => emblaApi && emblaApi.scrollNext(),
+    [emblaApi]
+  );
+  const scrollTo = useCallback(
+    (i) => emblaApi && emblaApi.scrollTo(i),
+    [emblaApi]
+  );
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => setSelected(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    onSelect();
+    // Autoplay
+    const id = setInterval(() => {
+      if (emblaApi) emblaApi.scrollNext();
+    }, 5500);
+    return () => {
+      clearInterval(id);
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi]);
 
   return (
     <section
@@ -584,39 +613,88 @@ const Gallery = () => {
             className="reveal text-slate-400 max-w-sm leading-relaxed"
             style={{ transitionDelay: "120ms" }}
           >
-            Piezas reales forjadas en Vigo. Clicka la foto para abrir en grande
-            — o escríbeme por WhatsApp y te enseño más.
+            Piezas reales forjadas en Vigo. Desliza o usa las flechas — y
+            escríbeme por WhatsApp si quieres ver más.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px] lg:auto-rows-[240px] gap-3 md:gap-4">
-          {tiles.map((t, i) => (
-            <figure
-              key={i}
-              data-testid={`gallery-tile-${i}`}
-              className={`reveal relative overflow-hidden group bg-[#0b0d11] ${
-                t.tall ? "row-span-2" : ""
-              } ${t.wide ? "col-span-2" : ""}`}
-              style={{ transitionDelay: `${i * 60}ms` }}
-            >
-              <img
-                src={t.src}
-                alt={t.label}
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover steel-filter"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
-              <figcaption className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-3">
-                <span className="text-[11px] tracking-[0.25em] uppercase text-slate-200">
-                  {t.label}
-                </span>
-                <span className="text-[10px] text-slate-500 font-mono">
-                  0{i + 1}
-                </span>
-              </figcaption>
-              <div className="absolute inset-0 ring-1 ring-inset ring-white/5 pointer-events-none" />
-            </figure>
-          ))}
+        {/* Carousel */}
+        <div className="reveal relative">
+          <div
+            className="overflow-hidden"
+            ref={emblaRef}
+            data-testid="gallery-carousel"
+          >
+            <div className="flex">
+              {slides.map((s, i) => (
+                <div
+                  key={i}
+                  className="relative flex-[0_0_100%] md:flex-[0_0_80%] lg:flex-[0_0_72%] px-2 md:px-3"
+                  data-testid={`gallery-slide-${i}`}
+                >
+                  <figure className="relative w-full aspect-[16/10] md:aspect-[16/9] bg-[#0b0d11] overflow-hidden border border-slate-800">
+                    <img
+                      src={s.src}
+                      alt={s.label}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-contain bg-black"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none" />
+                    <figcaption className="absolute bottom-5 left-6 right-6 flex items-end justify-between gap-4">
+                      <span className="text-[11px] md:text-xs tracking-[0.3em] uppercase text-slate-200">
+                        {s.label}
+                      </span>
+                      <span className="text-[10px] font-mono text-slate-500">
+                        {String(i + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+                      </span>
+                    </figcaption>
+                  </figure>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Controls */}
+          <div className="mt-8 flex items-center justify-between gap-6">
+            <div className="flex gap-3">
+              <button
+                onClick={scrollPrev}
+                aria-label="Anterior"
+                data-testid="gallery-prev"
+                className="w-12 h-12 border border-slate-700 text-slate-200 hover:border-slate-300 hover:text-white transition-colors flex items-center justify-center"
+              >
+                <ArrowLeft className="w-4 h-4" strokeWidth={1.5} />
+              </button>
+              <button
+                onClick={scrollNext}
+                aria-label="Siguiente"
+                data-testid="gallery-next"
+                className="w-12 h-12 border border-slate-700 text-slate-200 hover:border-slate-300 hover:text-white transition-colors flex items-center justify-center"
+              >
+                <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
+              </button>
+            </div>
+
+            <div className="flex gap-2">
+              {slides.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => scrollTo(i)}
+                  aria-label={`Ir a slide ${i + 1}`}
+                  data-testid={`gallery-dot-${i}`}
+                  className={`h-[2px] transition-all duration-500 ${
+                    selected === i
+                      ? "w-10 bg-slate-200"
+                      : "w-5 bg-slate-700 hover:bg-slate-500"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <div className="text-[11px] tracking-[0.3em] uppercase text-slate-500 font-mono">
+              {String(selected + 1).padStart(2, "0")} — {String(slides.length).padStart(2, "0")}
+            </div>
+          </div>
         </div>
 
         <div className="mt-14 flex justify-center reveal">

@@ -30,11 +30,9 @@ const BRAND = {
   address: "Rúa Macal, 11 · 36213 Vigo, Pontevedra",
   mapsUrl:
     "https://www.google.com/maps/search/?api=1&query=R%C3%BAa+Macal+11+36213+Vigo+Pontevedra",
-  // Placeholders — reemplazar por los datos reales cuando el cliente los facilite
   whatsapp: {
-    display: "+34 600 000 000",
-    // international format, no + ni espacios
-    href: "https://wa.me/34600000000?text=Hola%20Valhalla%20Exhausts%2C%20quiero%20pedir%20presupuesto%20para%20mi%20coche.",
+    display: "+34 610 20 93 22",
+    href: "https://wa.me/34610209322?text=Hola%20Valhalla%20Exhausts%2C%20quiero%20pedir%20presupuesto%20para%20mi%20coche.",
   },
   instagram: {
     handle: "@valhalla.exhausts",
@@ -44,7 +42,7 @@ const BRAND = {
     display: "info@valhallaexhausts.com",
     href: "mailto:info@valhallaexhausts.com",
   },
-  artisan: "Artesano soldador · forjando en Vigo",
+  artisan: "Álex · Forjando en Vigo",
 };
 
 const SHOP = {
@@ -54,6 +52,10 @@ const SHOP = {
     "https://customer-assets.emergentagent.com/job_valhalla-exhausts/artifacts/iv4ht20o_image.png",
   helmet:
     "https://customer-assets.emergentagent.com/job_valhalla-exhausts/artifacts/2w9afn1r_image.png",
+  mercedes:
+    "https://customer-assets.emergentagent.com/job_valhalla-exhausts/artifacts/7qnpocyh_image.png",
+  i20n:
+    "https://customer-assets.emergentagent.com/job_valhalla-exhausts/artifacts/dvzgrfcu_image.png",
 };
 
 /* ---------------------------------------------------------
@@ -527,8 +529,8 @@ const Process = () => (
 const Gallery = () => {
   const tiles = [
     {
-      src: SHOP.front,
-      label: "Escape inox · Banco de pruebas",
+      src: SHOP.mercedes,
+      label: "Mercedes-AMG · Línea completa homologada",
       tall: true,
     },
     {
@@ -537,21 +539,21 @@ const Gallery = () => {
     },
     {
       src: SHOP.welding,
-      label: "Montaje bajo coche · TIG",
+      label: "Montaje bajo coche · Soldadura TIG",
       wide: true,
     },
     {
-      src: "https://images.pexels.com/photos/6025956/pexels-photo-6025956.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1200",
-      label: "Salida doble cromada",
+      src: SHOP.i20n,
+      label: "Hyundai i20 N · En taller",
     },
     {
-      src: "https://images.pexels.com/photos/12920297/pexels-photo-12920297.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1200",
-      label: "Nissan 350Z · Línea completa",
+      src: SHOP.front,
+      label: "Banco de pruebas · Inox",
       wide: true,
     },
     {
-      src: "https://images.pexels.com/photos/10827691/pexels-photo-10827691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1200",
-      label: "Twin chrome · Detalle",
+      src: SHOP.mercedes,
+      label: "AMG · Detalle colectores",
       tall: true,
     },
   ];
@@ -640,21 +642,21 @@ const Gallery = () => {
 const TESTIMONIALS = [
   {
     quote:
-      "Trabajo impecable. El sonido del M3 quedó exactamente como soñaba — grave, limpio y con carácter. Se nota el oficio en cada soldadura.",
-    name: "Álvaro R.",
-    car: "BMW M3 E46",
+      "Álex es un crack. Un profesional en lo suyo. Un artesano de los que les gustan su oficio y que por desgracia cada día se encuentran menos. Me hizo intermedio y tramo final. Una pasada. Recomendable 100x100.",
+    name: "Sr. Rubio",
+    car: "Local Guide · Google",
   },
   {
     quote:
-      "Línea completa a medida para el 350Z. Se curró el diseño hasta el último milímetro y el acabado pulido es una barbaridad. Recomendado 100%.",
-    name: "Dani S.",
-    car: "Nissan 350Z",
+      "Un excelente profesional y gran persona. Le llevé dos coches para hacer líneas completas homologadas y el resultado es increíble, muy buenos acabados. Recomendable 100%.",
+    name: "Antonio ff",
+    car: "Local Guide · Google",
   },
   {
     quote:
-      "Pasé por varios talleres y ninguno entendía lo que quería. Aquí te escuchan, te asesoran y te entregan una pieza única. El coche suena a bestia.",
-    name: "Marcos L.",
-    car: "Audi S3 8P",
+      "Soy muy 'tiquismiquis' con el coche. Buscaba alguien que me hiciera el supresor de intermedio y no hiciera ninguna chapuza. Trabajo excelente, bien terminado y en el tiempo acordado. Ahora mi S1 tiene el sonido que buscaba.",
+    name: "Guillermo Caro Fernández",
+    car: "Audi S1 · Google",
   },
 ];
 

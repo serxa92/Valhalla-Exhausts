@@ -147,13 +147,13 @@ body {
     background: #334155;
 }
 
-/* Desaturate gallery images */
+/* Keep gallery images in their natural color with subtle contrast boost */
 .steel-filter {
-    filter: grayscale(100%) contrast(1.05) brightness(0.92);
+    filter: contrast(1.04) brightness(0.98) saturate(1.02);
     transition: filter 700ms ease, transform 900ms ease;
 }
 .steel-filter:hover {
-    filter: grayscale(60%) contrast(1.1) brightness(1);
+    filter: contrast(1.1) brightness(1.05) saturate(1.08);
     transform: scale(1.02);
 }
 

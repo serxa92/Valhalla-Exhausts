@@ -61,6 +61,10 @@ const SHOP = {
     "https://customer-assets.emergentagent.com/job_valhalla-exhausts/artifacts/7qnpocyh_image.png",
   i20n:
     "https://customer-assets.emergentagent.com/job_valhalla-exhausts/artifacts/dvzgrfcu_image.png",
+  clio:
+    "https://customer-assets.emergentagent.com/job_valhalla-exhausts/artifacts/jxdi97pp_imgi_42_661629923_18086031527593427_8278006516207900935_n.jpg",
+  bmw:
+    "https://customer-assets.emergentagent.com/job_valhalla-exhausts/artifacts/xrop3738_imgi_24_671721821_18088699001593427_3428392946579663952_n.jpg",
 };
 
 /* ---------------------------------------------------------
@@ -369,8 +373,7 @@ const Hero = () => {
             style={{ transitionDelay: "320ms" }}
           >
             {BRAND.subtagline} Acero inoxidable cortado, doblado y soldado TIG a
-            mano en Vigo. Sonido, rendimiento y presencia — una pieza única para
-            cada guerrero.
+            mano en Vigo. Sonido, rendimiento y presencia en cada pieza.
           </p>
 
           <div
@@ -750,8 +753,16 @@ const Gallery = () => {
       label: "Mercedes-AMG · Línea completa homologada",
     },
     {
+      src: SHOP.bmw,
+      label: "BMW · Doble salida + central inox",
+    },
+    {
       src: SHOP.i20n,
       label: "Hyundai i20 N · En taller",
+    },
+    {
+      src: SHOP.clio,
+      label: "Renault Clio · Doble salida central",
     },
     {
       src: SHOP.welding,

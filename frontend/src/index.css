@@ -279,6 +279,11 @@ body {
     animation: pulseRing 2.6s ease-in-out infinite;
 }
 
+/* Hide Emergent badge per client request */
+#emergent-badge {
+    display: none !important;
+}
+
 @layer base {
     [data-debug-wrapper="true"] {
         display: contents !important;

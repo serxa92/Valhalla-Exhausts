@@ -71,13 +71,13 @@ const RUNES = "ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚ�
 const FloatingRunes = () => {
   // Stable random layout generated once
   const runesRef = useRef(
-    Array.from({ length: 14 }).map((_, i) => ({
+    Array.from({ length: 22 }).map((_, i) => ({
       char: RUNES[Math.floor(Math.random() * RUNES.length)],
-      left: `${5 + Math.random() * 90}%`,
-      size: 14 + Math.random() * 28,
-      duration: 22 + Math.random() * 28,
+      left: `${3 + Math.random() * 94}%`,
+      size: 26 + Math.random() * 42,
+      duration: 20 + Math.random() * 26,
       delay: Math.random() * -30,
-      opacity: 0.25 + Math.random() * 0.35,
+      opacity: 0.55 + Math.random() * 0.4,
       key: i,
     }))
   );
@@ -207,7 +207,7 @@ const Header = () => {
             <span className="font-display text-lg tracking-[0.22em] text-slate-100">
               VALHALLA
             </span>
-            <span className="font-body text-[10px] tracking-[0.5em] text-slate-500">
+            <span className="font-body text-[11px] font-medium tracking-[0.45em] text-slate-400">
               EXHAUSTS
             </span>
           </div>
@@ -219,7 +219,7 @@ const Header = () => {
               key={l.href}
               href={l.href}
               data-testid={`nav-link-${l.label.toLowerCase()}`}
-              className="text-[13px] tracking-[0.3em] uppercase text-slate-400 hover:text-white transition-colors duration-300"
+              className="text-sm font-semibold tracking-[0.25em] uppercase text-slate-200 hover:text-white transition-colors duration-300"
             >
               {l.label}
             </a>
@@ -231,9 +231,9 @@ const Header = () => {
           target="_blank"
           rel="noopener noreferrer"
           data-testid="header-whatsapp-btn"
-          className="hidden lg:inline-flex items-center gap-2 text-[12px] tracking-[0.3em] uppercase px-5 py-3 border border-slate-700 text-slate-200 hover:border-slate-300 hover:text-white transition-all duration-300"
+          className="hidden lg:inline-flex items-center gap-2 text-sm font-semibold tracking-[0.25em] uppercase px-6 py-3.5 border border-slate-500 text-white hover:border-white hover:bg-white hover:text-black transition-all duration-300"
         >
-          <MessageCircle className="w-4 h-4" strokeWidth={1.5} />
+          <MessageCircle className="w-4 h-4" strokeWidth={2} />
           Presupuesto
         </a>
 
@@ -260,7 +260,7 @@ const Header = () => {
                 href={l.href}
                 onClick={() => setOpen(false)}
                 data-testid={`mobile-nav-${l.label.toLowerCase()}`}
-                className="text-sm tracking-[0.3em] uppercase text-slate-300 hover:text-white"
+                className="text-base font-semibold tracking-[0.25em] uppercase text-slate-100 hover:text-white"
               >
                 {l.label}
               </a>
@@ -270,7 +270,7 @@ const Header = () => {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="mobile-whatsapp-btn"
-              className="inline-flex items-center gap-2 text-sm tracking-[0.3em] uppercase px-5 py-3 border border-slate-600 text-slate-100 self-start"
+              className="inline-flex items-center gap-2 text-sm font-semibold tracking-[0.25em] uppercase px-5 py-3 border border-slate-400 text-white self-start"
             >
               <MessageCircle className="w-4 h-4" />
               Presupuesto

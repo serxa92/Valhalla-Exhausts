@@ -49,10 +49,11 @@ body {
 /* Norse rune ornament baseline */
 .rune-divider {
     font-family: var(--font-body);
-    letter-spacing: 0.6em;
-    color: #475569;
-    font-size: 0.7rem;
-    font-weight: 300;
+    letter-spacing: 0.5em;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
 }
 
 /* Brushed steel texture using layered gradients */
@@ -178,10 +179,10 @@ body {
         opacity: 0;
     }
     15% {
-        opacity: 0.35;
+        opacity: 0.9;
     }
     85% {
-        opacity: 0.25;
+        opacity: 0.75;
     }
     100% {
         transform: translate3d(20px, -120vh, 0) rotate(12deg);
@@ -191,11 +192,14 @@ body {
 .drift-rune {
     position: absolute;
     font-family: var(--font-body);
-    color: #64748b;
+    color: #cbd5e1;
+    font-weight: 500;
     pointer-events: none;
     animation: drift-y linear infinite;
     will-change: transform, opacity;
-    text-shadow: 0 0 18px rgba(148, 163, 184, 0.25);
+    text-shadow:
+        0 0 16px rgba(226, 232, 240, 0.5),
+        0 0 32px rgba(148, 163, 184, 0.3);
 }
 
 /* Aurora sweep behind hero */

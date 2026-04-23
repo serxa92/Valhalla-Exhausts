@@ -217,13 +217,13 @@ const Header = () => {
           </div>
         </a>
 
-        <nav className="hidden lg:flex items-center gap-10">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-9">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               data-testid={`nav-link-${l.label.toLowerCase()}`}
-              className="text-sm font-semibold tracking-[0.25em] uppercase text-slate-200 hover:text-white transition-colors duration-300"
+              className="text-[13px] xl:text-sm font-semibold tracking-[0.2em] xl:tracking-[0.25em] uppercase text-slate-200 hover:text-white transition-colors duration-300"
             >
               {l.label}
             </a>

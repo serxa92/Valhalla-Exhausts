@@ -17,6 +17,9 @@ import {
   Sparkles,
   Wrench,
   Phone,
+  Flag,
+  Gauge,
+  Wind,
 } from "lucide-react";
 
 /* ---------------------------------------------------------
@@ -61,6 +64,83 @@ const SHOP = {
 };
 
 /* ---------------------------------------------------------
+   Animated background — floating runes + ember sparks
+--------------------------------------------------------- */
+const RUNES = "ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ".split("");
+
+const FloatingRunes = () => {
+  // Stable random layout generated once
+  const runesRef = useRef(
+    Array.from({ length: 14 }).map((_, i) => ({
+      char: RUNES[Math.floor(Math.random() * RUNES.length)],
+      left: `${5 + Math.random() * 90}%`,
+      size: 14 + Math.random() * 28,
+      duration: 22 + Math.random() * 28,
+      delay: Math.random() * -30,
+      opacity: 0.25 + Math.random() * 0.35,
+      key: i,
+    }))
+  );
+
+  return (
+    <div
+      aria-hidden
+      className="fixed inset-0 pointer-events-none z-[1] overflow-hidden"
+      data-testid="floating-runes"
+    >
+      {runesRef.current.map((r) => (
+        <span
+          key={r.key}
+          className="drift-rune"
+          style={{
+            left: r.left,
+            bottom: 0,
+            fontSize: `${r.size}px`,
+            animationDuration: `${r.duration}s`,
+            animationDelay: `${r.delay}s`,
+            opacity: r.opacity,
+          }}
+        >
+          {r.char}
+        </span>
+      ))}
+    </div>
+  );
+};
+
+const Embers = () => {
+  const embersRef = useRef(
+    Array.from({ length: 22 }).map((_, i) => ({
+      left: `${Math.random() * 100}%`,
+      duration: 8 + Math.random() * 10,
+      delay: Math.random() * -14,
+      dx: `${Math.random() * 60 - 30}px`,
+      key: i,
+    }))
+  );
+  return (
+    <div
+      aria-hidden
+      className="absolute inset-0 pointer-events-none overflow-hidden"
+      data-testid="hero-embers"
+    >
+      {embersRef.current.map((e) => (
+        <span
+          key={e.key}
+          className="ember"
+          style={{
+            left: e.left,
+            animationDuration: `${e.duration}s`,
+            animationDelay: `${e.delay}s`,
+            "--dx": e.dx,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+/* ---------------------------------------------------------
    Hooks
 --------------------------------------------------------- */
 const useReveal = () => {
@@ -96,6 +176,7 @@ const Header = () => {
 
   const links = [
     { href: "#artesano", label: "Artesano" },
+    { href: "#servicios", label: "Servicios" },
     { href: "#proceso", label: "Proceso" },
     { href: "#galeria", label: "Galería" },
     { href: "#testimonios", label: "Testimonios" },
@@ -232,7 +313,7 @@ const Hero = () => {
       data-testid="hero-section"
       className="relative min-h-screen w-full overflow-hidden grain"
     >
-      {/* Backdrop: real workshop shot + heavy black veil */}
+      {/* Backdrop: real workshop shot + heavy black veil + animated aurora + embers */}
       <div className="absolute inset-0">
         <img
           src={SHOP.front}
@@ -241,15 +322,26 @@ const Hero = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#050505_80%)]" />
+        <div className="aurora" />
+        <Embers />
       </div>
 
       {/* Frame */}
       <div className="relative max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 min-h-screen flex flex-col">
         <div className="flex-1 flex flex-col justify-center pt-32 pb-24">
           <div className="reveal">
-            <div className="flex items-center gap-4 mb-10">
+            <div className="flex items-center gap-4 mb-6">
               <span className="h-px w-12 bg-slate-500" />
               <span className="rune-divider">ᚠᚱᚨᛗᛃᚨ · VIGO · GALICIA</span>
+            </div>
+            <div
+              className="inline-flex items-center gap-3 border border-slate-700 bg-black/40 backdrop-blur-sm px-4 py-2 mb-10"
+              data-testid="hero-experience-badge"
+            >
+              <span className="h-1.5 w-1.5 bg-slate-200 rounded-full animate-pulse" />
+              <span className="text-[11px] tracking-[0.35em] uppercase text-slate-300">
+                +10 años forjando escapes a mano
+              </span>
             </div>
           </div>
 
@@ -269,8 +361,7 @@ const Hero = () => {
           >
             Escapes artesanales
             <br />
-            <span className="italic text-slate-300">forjados</span> como en el{" "}
-            <span className="text-slate-100">Valhalla.</span>
+            <span className="italic text-slate-300">a medida.</span>
           </h1>
 
           <p
@@ -317,7 +408,7 @@ const Hero = () => {
             style={{ transitionDelay: "520ms" }}
           >
             {[
-              { k: "+200", v: "Escapes forjados" },
+              { k: "+10", v: "Años de oficio" },
               { k: "100%", v: "Hecho a mano" },
               { k: "TIG", v: "Soldadura premium" },
               { k: "Vigo", v: "Taller propio" },
@@ -387,14 +478,17 @@ const Artisan = () => (
 
         <div className="mt-10 space-y-6 text-slate-400 leading-relaxed max-w-xl">
           <p>
-            En Valhalla Exhausts cada escape nace de la misma obsesión: sonido
+            <span className="text-white font-medium">Más de 10 años</span>{" "}
+            bajo coches, soldador en mano, forjando escapes a medida. En
+            Valhalla Exhausts cada pieza nace de la misma obsesión: sonido
             profundo, acabado impecable y una línea pensada milímetro a
             milímetro para tu coche. Nada de catálogo, nada de serie.
           </p>
           <p className="text-slate-500">
             Soldadura TIG en acero inoxidable, colectores hechos a medida,
-            dobleces limpios y salidas a tu estilo. Años de experiencia bajo
-            coches aprendiendo que un buen escape se siente antes de verlo.
+            downpipes, admisiones y — algo que no en todos los talleres
+            encontrarás — <span className="text-slate-300">escapes
+            homologados</span> listos para ITV.
           </p>
         </div>
 
@@ -417,6 +511,127 @@ const Artisan = () => (
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+);
+
+/* ---------------------------------------------------------
+   Services — 2x2 grid
+--------------------------------------------------------- */
+const SERVICES = [
+  {
+    title: "Escapes artesanales",
+    desc: "Líneas completas a medida, cortadas y soldadas TIG en acero inoxidable. Sonido, estética y flujo pensados desde cero para tu coche.",
+    icon: Flame,
+  },
+  {
+    title: "Escapes homologados",
+    desc: "Sistemas preparados para ITV, con la documentación y el trabajo que no en todos los talleres te ofrecen. Disfruta del sonido sin miedo.",
+    icon: Flag,
+    featured: true,
+  },
+  {
+    title: "Downpipes",
+    desc: "Downpipes en inox con o sin catalizador deportivo, diseñados para maximizar respuesta y aliviar la restricción de fábrica.",
+    icon: Gauge,
+  },
+  {
+    title: "Sistemas de admisión",
+    desc: "Admisiones a medida que mejoran entrada de aire y sonido. Piezas hechas en taller, nada de universal.",
+    icon: Wind,
+  },
+];
+
+const Services = () => (
+  <section
+    id="servicios"
+    data-testid="services-section"
+    className="relative py-28 md:py-36 lg:py-44 bg-[#050505] grain overflow-hidden"
+  >
+    {/* Ornament ghost text */}
+    <div
+      aria-hidden
+      className="pointer-events-none absolute top-12 right-0 font-display text-[20vw] leading-none tracking-tighter text-slate-100/[0.02] whitespace-nowrap select-none -mr-12"
+    >
+      SERVICIOS
+    </div>
+
+    <div className="relative max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-16">
+        <div className="reveal max-w-2xl">
+          <div className="flex items-center gap-4 mb-8">
+            <span className="h-px w-12 bg-slate-500" />
+            <span className="rune-divider">02 · SERVICIOS</span>
+          </div>
+          <h2
+            data-testid="services-title"
+            className="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.02] tracking-tight text-white"
+          >
+            Qué forjo
+            <br />
+            <span className="italic text-slate-300">en el taller.</span>
+          </h2>
+        </div>
+        <p
+          className="reveal text-slate-400 max-w-md leading-relaxed"
+          style={{ transitionDelay: "120ms" }}
+        >
+          Cuatro servicios, todos hechos a mano en Vigo. Desde un simple
+          supresor hasta una línea completa homologada.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-px bg-slate-900">
+        {SERVICES.map((s, i) => {
+          const Icon = s.icon;
+          return (
+            <article
+              key={s.title}
+              data-testid={`service-${i}`}
+              className={`tracing-card reveal relative p-9 md:p-12 lg:p-14 min-h-[300px] flex flex-col justify-between transition-colors duration-500 ${
+                s.featured
+                  ? "bg-[#0f1218] hover:bg-[#121620]"
+                  : "bg-[#0b0d11] hover:bg-[#0f1218]"
+              }`}
+              style={{ transitionDelay: `${i * 100}ms` }}
+            >
+              {s.featured && (
+                <span className="absolute top-6 right-6 inline-flex items-center gap-2 text-[10px] tracking-[0.35em] uppercase text-slate-200 border border-slate-500/60 px-3 py-1">
+                  <span className="h-1 w-1 rounded-full bg-slate-200 animate-pulse" />
+                  Destacado
+                </span>
+              )}
+              <div>
+                <Icon
+                  className="w-9 h-9 text-slate-300 mb-8"
+                  strokeWidth={1.3}
+                />
+                <h3 className="font-display text-3xl md:text-4xl text-white mb-4 leading-[1.05]">
+                  {s.title}
+                </h3>
+                <p className="text-slate-400 leading-relaxed max-w-md text-[15px]">
+                  {s.desc}
+                </p>
+              </div>
+              <div className="mt-10 pt-6 border-t border-slate-800 flex items-center justify-between">
+                <span className="text-[10px] tracking-[0.4em] uppercase text-slate-500">
+                  0{i + 1} / 04
+                </span>
+                <a
+                  href={BRAND.whatsapp.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid={`service-cta-${i}`}
+                  className="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-slate-300 hover:text-white group"
+                >
+                  Preguntar
+                  <ArrowRight className="w-4 h-4 -translate-x-1 group-hover:translate-x-0 transition-transform" />
+                </a>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </div>
   </section>
@@ -469,7 +684,7 @@ const Process = () => (
         <div className="reveal max-w-2xl">
           <div className="flex items-center gap-4 mb-8">
             <span className="h-px w-12 bg-slate-500" />
-            <span className="rune-divider">02 · PROCESO</span>
+            <span className="rune-divider">03 · PROCESO</span>
           </div>
           <h2
             data-testid="process-title"
@@ -598,7 +813,7 @@ const Gallery = () => {
           <div className="reveal max-w-2xl">
             <div className="flex items-center gap-4 mb-8">
               <span className="h-px w-12 bg-slate-500" />
-              <span className="rune-divider">03 · GALERÍA</span>
+              <span className="rune-divider">04 · GALERÍA</span>
             </div>
             <h2
               data-testid="gallery-title"
@@ -748,7 +963,7 @@ const Testimonials = () => (
       <div className="reveal mb-16 max-w-2xl">
         <div className="flex items-center gap-4 mb-8">
           <span className="h-px w-12 bg-slate-500" />
-          <span className="rune-divider">04 · TESTIMONIOS</span>
+          <span className="rune-divider">05 · TESTIMONIOS</span>
         </div>
         <h2
           data-testid="testimonials-title"
@@ -836,13 +1051,13 @@ const Contact = () => {
         <div className="reveal max-w-3xl">
           <div className="flex items-center gap-4 mb-8">
             <span className="h-px w-12 bg-slate-500" />
-            <span className="rune-divider">05 · CONTACTO</span>
+            <span className="rune-divider">06 · CONTACTO</span>
           </div>
           <h2
             data-testid="contact-title"
             className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.98] tracking-tight text-white"
           >
-            Cuéntame tu coche.
+            Cuéntame tu idea.
             <br />
             <span className="italic text-slate-300">
               Yo me encargo del rugido.
@@ -989,12 +1204,14 @@ const Footer = () => (
 function App() {
   useReveal();
   return (
-    <div className="App bg-[#050505] text-white" data-testid="app-root">
+    <div className="App bg-[#050505] text-white relative" data-testid="app-root">
+      <FloatingRunes />
       <Header />
-      <main>
+      <main className="relative z-[2]">
         <Hero />
         <RuneMarquee />
         <Artisan />
+        <Services />
         <Process />
         <Gallery />
         <Testimonials />

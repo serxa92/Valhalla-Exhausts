@@ -171,6 +171,96 @@ body {
     will-change: transform;
 }
 
+/* Floating runes drift — global background animation */
+@keyframes drift-y {
+    0% {
+        transform: translate3d(0, 40px, 0) rotate(0deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.35;
+    }
+    85% {
+        opacity: 0.25;
+    }
+    100% {
+        transform: translate3d(20px, -120vh, 0) rotate(12deg);
+        opacity: 0;
+    }
+}
+.drift-rune {
+    position: absolute;
+    font-family: var(--font-body);
+    color: #64748b;
+    pointer-events: none;
+    animation: drift-y linear infinite;
+    will-change: transform, opacity;
+    text-shadow: 0 0 18px rgba(148, 163, 184, 0.25);
+}
+
+/* Aurora sweep behind hero */
+@keyframes aurora {
+    0%,
+    100% {
+        transform: translate3d(-10%, 0, 0) scale(1.1);
+        opacity: 0.45;
+    }
+    50% {
+        transform: translate3d(10%, 4%, 0) scale(1.25);
+        opacity: 0.75;
+    }
+}
+.aurora {
+    position: absolute;
+    inset: -20%;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            45% 35% at 30% 40%,
+            rgba(148, 163, 184, 0.12) 0%,
+            transparent 60%
+        ),
+        radial-gradient(
+            40% 30% at 70% 60%,
+            rgba(203, 213, 225, 0.08) 0%,
+            transparent 65%
+        );
+    filter: blur(60px);
+    animation: aurora 16s ease-in-out infinite;
+    will-change: transform, opacity;
+}
+
+/* Forge ember rising */
+@keyframes ember {
+    0% {
+        transform: translate3d(0, 0, 0) scale(0.6);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate3d(var(--dx, 30px), -90vh, 0) scale(1.4);
+        opacity: 0;
+    }
+}
+.ember {
+    position: absolute;
+    bottom: 0;
+    width: 2px;
+    height: 2px;
+    background: #e2e8f0;
+    border-radius: 50%;
+    box-shadow:
+        0 0 10px rgba(226, 232, 240, 0.8),
+        0 0 24px rgba(148, 163, 184, 0.4);
+    pointer-events: none;
+    animation: ember linear infinite;
+    will-change: transform, opacity;
+}
+
+/* Sweep beam (unused — kept for potential future use) */
+
 /* Subtle pulse on hero CTA */
 @keyframes pulseRing {
     0%,

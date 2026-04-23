@@ -1,4 +1,4 @@
-# 🔥 Valhalla Exhausts — Corporate Landing Page
+# ᛉᛟᛣϟϟ🪓 Valhalla Exhausts 🪓ᛉᛟᛣϟϟ
 
 > A dark, conversion-focused landing page for a bespoke automotive exhaust brand — built for impact, designed to convert.
 
@@ -105,7 +105,7 @@ The page includes direct links for:
 
 ## License
 
-MIT — free to use, adapt, and build upon.
+Copyright (c) 2026 Valhalla Exhausts. All rights reserved.
 
 ---
 

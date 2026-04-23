@@ -1,4 +1,4 @@
-# Valhalla Exhausts
+# ᛉᛟᛣϟϟ Valhalla Exhausts ᛉᛟᛣϟϟ
 
 Landing page corporativa para **Valhalla Exhausts**, una marca centrada en escapes artesanales a medida, reparación de sistemas de escape y soluciones personalizadas para automoción.
 
@@ -6,7 +6,7 @@ La web presenta un diseño oscuro, visual y enfocado a conversión, mostrando se
 
 ---
 
-## Vista previa
+## Vista previa 𓄿
 
 - Hero principal con mensaje de marca
 - Sección de presentación de servicios
@@ -17,7 +17,7 @@ La web presenta un diseño oscuro, visual y enfocado a conversión, mostrando se
 
 ---
 
-## Características
+## Características ﹏𓊝﹏
 
 - Diseño responsive orientado a móvil
 - Estética premium y oscura
@@ -28,47 +28,5 @@ La web presenta un diseño oscuro, visual y enfocado a conversión, mostrando se
 
 ---
 
-## Secciones principales
 
-- **Hero**  
-  Presentación principal de la marca con llamada a la acción.
 
-- **Sobre el servicio**  
-  Explicación del enfoque artesanal y personalizado.
-
-- **Qué ofrece el taller**  
-  Servicios como escapes a medida, reparación, asesoramiento y desarrollo de soluciones personalizadas.
-
-- **Proceso de trabajo**  
-  Cómo se estudia cada vehículo y se prepara cada proyecto.
-
-- **Ventajas**  
-  Personalización, calidad, sonido, rendimiento y acabados.
-
-- **FAQ**  
-  Respuestas a dudas frecuentes de clientes.
-
-- **Contacto**  
-  WhatsApp, Instagram, email y ubicación.
-
----
-
-## Tecnologías
-
-Este proyecto puede adaptarse según el stack real. Ejemplo:
-
-- HTML5
-- CSS3 / SCSS / Tailwind CSS
-- JavaScript
-- React / Next.js / Astro / Vue
-
-Sustituye esta sección por las tecnologías reales de tu proyecto.
-
----
-
-## Instalación
-
-Clona el repositorio:
-
-```bash
-git clone https://github.com/serxa92/valhalla-exhausts.git
